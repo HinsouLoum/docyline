@@ -1,9 +1,9 @@
-package com.laboacamedy.docyline.serviceImpl;
+package com.laboacamedy.docyline.service.serviceImpl;
 
 import com.laboacamedy.docyline.dto.ConcoursRequest;
 import com.laboacamedy.docyline.entities.Concours;
 import com.laboacamedy.docyline.entities.Matiere;
-import com.laboacamedy.docyline.enums.StatutConcours;
+import com.laboacamedy.docyline.entities.enums.StatutConcours;
 import com.laboacamedy.docyline.exception.RequeteInvalideException;
 import com.laboacamedy.docyline.exception.RessourceNonTrouveeException;
 import com.laboacamedy.docyline.repository.ConcoursRepository;

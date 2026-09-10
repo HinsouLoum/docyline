@@ -1,11 +1,11 @@
-package com.laboacamedy.docyline.serviceImpl;
+package com.laboacamedy.docyline.service.serviceImpl;
 
 import com.laboacamedy.docyline.dto.AuthResponse;
 import com.laboacamedy.docyline.dto.ConnexionRequest;
 import com.laboacamedy.docyline.dto.InscriptionResquest;
 import com.laboacamedy.docyline.entities.Utilisateur;
-import com.laboacamedy.docyline.enums.Role;
-import com.laboacamedy.docyline.enums.StatutCompte;
+import com.laboacamedy.docyline.entities.enums.Role;
+import com.laboacamedy.docyline.entities.enums.StatutCompte;
 import com.laboacamedy.docyline.exception.RequeteInvalideException;
 import com.laboacamedy.docyline.repository.UtilisateurRepository;
 import com.laboacamedy.docyline.security.CustomUserDetails;

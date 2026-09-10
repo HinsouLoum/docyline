@@ -5,7 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +23,14 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class JwtService {
 
-    private final JwtProperties jwtProperties;
-//    @Value("${app.jwt.secret}")
-//    private String secretKey;
-//
-//    @Value("${app.jwt.expiration-ms}")
-//    private long expirationMs;
+    @Value("${app.jwt.secret}")
+    private String secretKey;
+
+    @Value("${app.jwt.expiration-ms}")
+    private long expirationMs;
 
     private SecretKey getSigningKey(){
-        return Keys.hmacShaKeyFor(jwtProperties.getSecretKey().getBytes());
+        return Keys.hmacShaKeyFor(secretKey.getBytes());
     }
 
     /** Genere un token jwt l'utilisateur authentifie, en y incluant son role */
@@ -42,7 +41,7 @@ public class JwtService {
                 .claims(claims)
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis()+jwtProperties.getExpirationMs()))
+                .expiration(new Date(System.currentTimeMillis() + expirationMs))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -51,7 +50,7 @@ public class JwtService {
         return extraireClaim(token, Claims::getSubject);
     }
 
-    public boolean estTokenValide(String token,UserDetails userDetails){
+    public boolean estTokenValide(String token, UserDetails userDetails){
         final String email = extraireEmail(token);
         return email.equals(userDetails.getUsername()) && !estTokenExpire(token);
     }

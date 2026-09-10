@@ -1,4 +1,4 @@
-package com.laboacamedy.docyline.enums;
+package com.laboacamedy.docyline.entities.enums;
 
 /**
  * Roles disponibles dans le systeme (cf. section "Acteurs et utilisateurs").

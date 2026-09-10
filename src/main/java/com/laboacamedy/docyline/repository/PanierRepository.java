@@ -1,7 +1,7 @@
 package com.laboacamedy.docyline.repository;
 
 import com.laboacamedy.docyline.entities.Panier;
-import com.laboacamedy.docyline.enums.StatutPanier;
+import com.laboacamedy.docyline.entities.enums.StatutPanier;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

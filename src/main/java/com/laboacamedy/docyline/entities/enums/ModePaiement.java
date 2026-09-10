@@ -1,4 +1,4 @@
-package com.laboacamedy.docyline.enums;
+package com.laboacamedy.docyline.entities.enums;
 
 /** Moyens de paiement integres a l'application (cf. Annexe 5 du cahier des charges). */
 public enum ModePaiement {

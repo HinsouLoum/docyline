@@ -1,4 +1,4 @@
-package com.laboacamedy.docyline.enums;
+package com.laboacamedy.docyline.entities.enums;
 
 
 /** Statut d'une commande, mis a jour tout au long du cycle de paiement. */

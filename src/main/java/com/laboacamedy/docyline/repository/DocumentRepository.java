@@ -1,8 +1,7 @@
 package com.laboacamedy.docyline.repository;
 
-import com.laboacamedy.docyline.dto.DocumentResponse;
 import com.laboacamedy.docyline.entities.Document;
-import com.laboacamedy.docyline.enums.StatutDocument;
+import com.laboacamedy.docyline.entities.enums.StatutDocument;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

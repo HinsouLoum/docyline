@@ -1,7 +1,7 @@
 package com.laboacamedy.docyline.entities;
 
-import com.laboacamedy.docyline.enums.ModePaiement;
-import com.laboacamedy.docyline.enums.StatutPaiement;
+import com.laboacamedy.docyline.entities.enums.ModePaiement;
+import com.laboacamedy.docyline.entities.enums.StatutPaiement;
 import jakarta.persistence.*;
 import lombok.*;
 

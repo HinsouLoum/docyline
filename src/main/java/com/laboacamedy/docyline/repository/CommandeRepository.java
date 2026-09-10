@@ -1,7 +1,7 @@
 package com.laboacamedy.docyline.repository;
 
 import com.laboacamedy.docyline.entities.Commande;
-import com.laboacamedy.docyline.enums.StatutCommande;
+import com.laboacamedy.docyline.entities.enums.StatutCommande;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

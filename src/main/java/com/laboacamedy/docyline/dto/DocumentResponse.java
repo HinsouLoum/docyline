@@ -1,7 +1,7 @@
 package com.laboacamedy.docyline.dto;
 
 
-import com.laboacamedy.docyline.enums.StatutDocument;
+import com.laboacamedy.docyline.entities.enums.StatutDocument;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

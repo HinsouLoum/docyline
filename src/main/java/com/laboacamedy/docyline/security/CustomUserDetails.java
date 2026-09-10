@@ -1,7 +1,7 @@
 package com.laboacamedy.docyline.security;
 
 import com.laboacamedy.docyline.entities.Utilisateur;
-import com.laboacamedy.docyline.enums.StatutCompte;
+import com.laboacamedy.docyline.entities.enums.StatutCompte;
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;

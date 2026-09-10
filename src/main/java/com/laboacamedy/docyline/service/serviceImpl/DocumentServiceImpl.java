@@ -1,4 +1,4 @@
-package com.laboacamedy.docyline.serviceImpl;
+package com.laboacamedy.docyline.service.serviceImpl;
 
 import com.laboacamedy.docyline.dto.DocumentRequest;
 import com.laboacamedy.docyline.dto.DocumentResponse;
@@ -6,7 +6,7 @@ import com.laboacamedy.docyline.entities.Categorie;
 import com.laboacamedy.docyline.entities.Concours;
 import com.laboacamedy.docyline.entities.Document;
 import com.laboacamedy.docyline.entities.Matiere;
-import com.laboacamedy.docyline.enums.StatutDocument;
+import com.laboacamedy.docyline.entities.enums.StatutDocument;
 import com.laboacamedy.docyline.exception.RequeteInvalideException;
 import com.laboacamedy.docyline.exception.RessourceNonTrouveeException;
 import com.laboacamedy.docyline.repository.CategorieRepository;
@@ -26,7 +26,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**

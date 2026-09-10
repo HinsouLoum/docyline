@@ -1,6 +1,6 @@
 package com.laboacamedy.docyline.entities;
 
-import com.laboacamedy.docyline.enums.StatutConcours;
+import com.laboacamedy.docyline.entities.enums.StatutConcours;
 import jakarta.persistence.*;
 import lombok.*;
 

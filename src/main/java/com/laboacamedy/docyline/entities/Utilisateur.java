@@ -1,7 +1,7 @@
 package com.laboacamedy.docyline.entities;
 
-import com.laboacamedy.docyline.enums.Role;
-import com.laboacamedy.docyline.enums.StatutCompte;
+import com.laboacamedy.docyline.entities.enums.Role;
+import com.laboacamedy.docyline.entities.enums.StatutCompte;
 import jakarta.persistence.*;
 import lombok.*;
 
