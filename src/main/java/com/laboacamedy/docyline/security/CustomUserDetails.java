@@ -26,7 +26,7 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 //        Le role est prefixe par "ROLE" pour etre compatible avec hasRole() de Spring Security
-        return List.of(new SimpleGrantedAuthority("ROLE"+utilisateur.getRole().name()));
+        return List.of(new SimpleGrantedAuthority("ROLE_"+utilisateur.getRole().name()));
     }
 
     @Override
