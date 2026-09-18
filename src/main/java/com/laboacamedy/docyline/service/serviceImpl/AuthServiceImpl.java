@@ -29,7 +29,7 @@ public class AuthServiceImpl  implements AuthService {
 
     private final UtilisateurRepository utilisateurRepository;
     private  final PasswordEncoder passwordEncoder;
-    private JwtService jwtService;
+    private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     @Override
     public AuthResponse inscrire(InscriptionResquest requete) {
