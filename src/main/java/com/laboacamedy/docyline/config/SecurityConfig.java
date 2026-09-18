@@ -58,7 +58,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/statistiques/**","/api/admin/**").hasRole("ADMINISTRATEUR")
 
 //                        Panier, commandes, paiements, quiz, telechargements: candidats connectes
-                                .requestMatchers("/api/paier/**","/api/commandes/**","/api/paiements/**",
+                                .requestMatchers("/api/paniers/**","/api/commandes/**","/api/paiements/**",
                                         "/api/telechargements/**","/api/quiz/passer/**","/api/resultats/**").authenticated()
 
 //                        Toute autre route necessite d'etre authentifie

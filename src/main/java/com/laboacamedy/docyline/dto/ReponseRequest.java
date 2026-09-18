@@ -12,4 +12,5 @@ public class ReponseRequest {
 
     // Indique si cette proposition est la (une des) bonne(s) reponse(s)
     private Boolean estCorrecte = false;
+    private Long questionsId;
 }

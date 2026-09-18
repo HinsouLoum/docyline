@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Contrôleur REST gérant l'inscription et la connexion des utilisateurs.
  * Routes publiques (cf. SecurityConfig : /api/auth/** est accessible sans authentification).
- *
  * Endpoints disponibles :
  * - POST /api/auth/inscription : Créer un nouveau compte candidat
  * - POST /api/auth/connexion : Authentifier l'utilisateur et obtenir le token JWT

@@ -9,6 +9,14 @@ conforme au cahier des charges (Labo Academy, Douala).
 - Spring Security + JWT (authentification stateless)
 - Lombok, Bean Validation, Springdoc/Swagger
 
+```bash
+# Créer la base de données
+mysql -u root -p
+CREATE DATABASE labo_academy;
+USE labo_academy;
+```
+
+
 ## Architecture des packages
 
 ```
@@ -25,6 +33,128 @@ com.laboacademy.app
 ├── controller/     → Contrôleurs REST (endpoints /api/...)
 └── exception/      → Exceptions métier + GlobalExceptionHandler (réponses d'erreur uniformes)
 ```
+
+### Frontend (Angular)
+
+```
+src/app/
+├── core/
+│   ├── guards/         # Auth, Role Guards
+│   ├── interceptors/   # JWT Interceptor
+│   ├── models/         # Interfaces
+│   └── services/       # Services HTTP
+├── shared/             # Composants partagés
+└── features/           # Modules métier
+```
+
+
+## 🔒 Authentification JWT
+
+### Flow
+
+1. **Inscription** → `POST /auth/inscription`
+    - Email, Password, Nom, Prénom
+    - Retour: `{ token, utilisateur }`
+
+2. **Connexion** → `POST /auth/connexion`
+    - Email, Password
+    - Retour: `{ token, utilisateur }`
+
+3. **Requêtes protégées**
+    - Header: `Authorization: Bearer <token>`
+    - L'interceptor Angular ajoute automatiquement
+
+### Rôles
+
+- 🟢 **VISITEUR** - Accès public uniquement
+- 🔵 **CANDIDAT** - Utilisateur standard
+- 🟣 **GESTIONNAIRE** - Gestion du contenu
+- 🔴 **ADMIN** - Accès administrateur complet
+
+---
+
+## 🚨 Erreurs Communes
+
+### CORS Error
+
+**Symptôme**: `No 'Access-Control-Allow-Origin' header`
+
+**Solution**: Le proxy Angular dans `src/proxy.conf.json` redirige automatiquement. Si ça ne marche pas, vérifiez que le backend tourne sur `http://localhost:8080`.
+
+### 401 Unauthorized
+
+**Symptôme**: Erreur après login
+
+**Solution**:
+- Vérifiez que le JWT secret dans `application.properties` est correct
+- Vérifiez que le token est stocké dans localStorage
+- Vérifiez que l'interceptor ajoute le header `Authorization`
+
+### Base de données vide
+
+**Symptôme**: Pas de données après lancement
+
+**Solution**:
+- Vérifiez que `spring.jpa.hibernate.ddl-auto=update` est configuré
+- Vérifiez que la base existe et est accessible
+- Insérez des données de test via SQL ou via l'API
+
+---
+
+
+## 📋 Checklist Avant Production
+
+- [ ] Backend configuré (`application.properties`)
+- [ ] Base de données créée et accessible
+- [ ] Frontend configuré (`environment.ts`)
+- [ ] Authentification testée
+- [ ] JWT secret généré et sécurisé
+- [ ] CORS configuré correctement
+- [ ] Tous les endpoints testés
+- [ ] Guards de route fonctionnels
+- [ ] Paiements intégrés (si applicable)
+- [ ] Upload/Download de fichiers testés
+- [ ] Logs en production désactivés
+- [ ] Security headers configurés
+
+---
+
+## 🆘 Support & Dépannage
+
+### Lancer le backend en mode debug
+```bash
+mvn spring-boot:run -Dspring-boot.run.arguments="--debug"
+```
+
+### Lancer le frontend en mode debug
+```bash
+ng serve --poll=2000
+```
+
+### Réinitialiser la base de données
+```bash
+DROP DATABASE labo_academy;
+CREATE DATABASE labo_academy;
+```
+
+### Nettoyer les caches Maven
+```bash
+mvn clean
+rm -rf ~/.m2/repository
+```
+
+---
+
+## 📞 Contacts & Ressources
+
+- **Spring Boot Docs**: https://spring.io/projects/spring-boot
+- **Angular Docs**: https://angular.io/docs
+- **MySQL Docs**: https://dev.mysql.com/doc/
+- **JWT Docs**: https://jwt.io/
+
+---
+
+
 
 ## Ce qui est livré dans cette première partie
 
@@ -59,17 +189,45 @@ com.laboacademy.app
 3. `mvn spring-boot:run`
 4. Documentation API : `http://localhost:8080/swagger-ui.html`
 
-## Endpoints déjà disponibles
+## 🔗 Endpoints Intégrés
 
-| Méthode | URL | Accès |
-|---|---|---|
-| POST | /api/auth/inscription | Public |
-| POST | /api/auth/connexion | Public |
-| GET | /api/concours | Public |
-| GET | /api/concours/actifs | Public |
-| POST/PUT | /api/concours | Admin, Gestionnaire |
-| PATCH | /api/concours/{id}/statut | Admin, Gestionnaire |
-| GET | /api/documents | Public |
-| GET | /api/documents/rechercher?motCle= | Public |
-| GET | /api/documents/filtrer/... | Public |
-| POST | /api/documents (multipart) | Admin, Gestionnaire |
+### ✅ Déjà Implémentés (Frontend + Backend)
+
+| Endpoint | Méthode | Status |
+|----------|---------|--------|
+| `/auth/inscription` | POST | ✅ Complet |
+| `/auth/connexion` | POST | ✅ Complet |
+| `/concours` | GET | ✅ Complet |
+| `/concours/actifs` | GET | ✅ Complet |
+| `/concours/{id}` | GET | ✅ Complet |
+| `/documents` | GET | ✅ Complet |
+| `/documents/{id}` | GET | ✅ Complet |
+| `/documents/rechercher` | GET | ✅ Complet |
+| `/documents/filtrer/concours/{id}` | GET | ✅ Complet |
+| `/matieres` | GET | ✅ Complet |
+| `/categories` | GET | ✅ Complet |
+| `/quiz` | GET | ✅ Complet |
+| `/quiz/publies` | GET | ✅ Complet |
+| `/quiz/{id}` | GET | ✅ Complet |
+
+
+### 🔨 À Adapter (Structure créée, logique à implémenter)
+
+| Endpoint | Méthode | Statut |
+|----------|---------|--------|
+| `/panier` | GET | 🔨 À adapter |
+| `/panier/ajouter` | POST | 🔨 À adapter |
+| `/panier/{ligneId}` | DELETE | 🔨 À adapter |
+| `/commandes` | GET | 🔨 À adapter |
+| `/commandes` | POST | 🔨 À adapter |
+| `/commandes/{id}` | GET | 🔨 À adapter |
+| `/paiements` | POST | 🔨 À adapter |
+| `/paiements/{id}/confirmer` | PUT | 🔨 À adapter |
+| `/bibliotheque` | GET | 🔨 À adapter |
+| `/bibliotheque/{id}/download` | GET | 🔨 À adapter |
+| `/resultats` | GET | 🔨 À adapter |
+| `/resultats/{id}` | GET | 🔨 À adapter |
+| `/quiz/{id}/submit` | POST | 🔨 À adapter |
+| `/statistiques` | GET | 🔨 À adapter |
+
+---
